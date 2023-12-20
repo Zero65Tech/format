@@ -30,8 +30,23 @@ exports.currency = (amount, d = 2) => {
   return amount < 0 ? ('- ₹' + f) : ('₹' + f);
 }
 
-exports.json = (data, breakFn, ...nodes) => {
-  
+exports.json = (data, wrap = 0, ...nodes) => {
+
+  let multiLine = true;
+
+  if(typeof wrap == 'number') {
+    if(wrap > 0)
+      wrap--;
+    else
+      multiLine = false;
+  } else if(typeof wrap == 'function') {
+    multiLine = wrap(nodes);
+  }
+
+  if(!multiLine)
+    wrap = () => false;
+
+
   if(typeof data != 'object') {
 
     if(typeof data == 'number' && Number.isNaN(data))
@@ -41,15 +56,11 @@ exports.json = (data, breakFn, ...nodes) => {
 
   } else if(data instanceof Array) {
 
-    let multiLine = breakFn ? breakFn(...nodes) : true;
-    if(!multiLine)
-      breakFn = () => false;
-
     let strArr = [];
 
     for(let [ idx, item ] of data.entries()) {
       if(typeof item == 'object' && item !== null) {
-        strArr.push(exports.json(item, breakFn, ...nodes, idx).replace(/\n/g, '\n  '));
+        strArr.push(exports.json(item, wrap, ...nodes, idx).replace(/\n/g, '\n  '));
       } else if(typeof item == 'number' && Number.isNaN(item)) {
         strArr.push('"NaN');
       } else {
@@ -66,14 +77,10 @@ exports.json = (data, breakFn, ...nodes) => {
 
   } else {
 
-    let multiLine = breakFn ? breakFn(...nodes) : true;
-    if(!multiLine)
-      breakFn = () => false;
-
     let strArr = [];
     for(let [ key, value ] of Object.entries(data)) {
       if(typeof value == 'object' && value !== null)
-        strArr.push(`"${ key }": ${ exports.json(value, breakFn, ...nodes, key).replace(/\n/g, '\n  ') }`);
+        strArr.push(`"${ key }": ${ exports.json(value, wrap, ...nodes, key).replace(/\n/g, '\n  ') }`);
       else if(typeof value == 'number' && Number.isNaN(value))
         strArr.push(`"${ key }": "NaN"`);
       else

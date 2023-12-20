@@ -1,8 +1,8 @@
 {
   "author": "Zero65 Technologies Pvt. Ltd.",
   "name": "@zero65tech/format",
-  "version": "4.0.0",
-  "description": "Format Toolkit",
+  "version": "4.0.1",
+  "description": "Formatting Toolkit",
   "license": "MIT",
   "repository": {
     "type": "git",
