@@ -97,3 +97,113 @@ exports.json = (data, wrap = 0, ...nodes) => {
   }
 
 }
+
+exports.gradient(amount, min, max, mid = 0, minColor = 'deep-orange', maxColor = 'light-green') {
+
+  if(amount === undefined || amount === null || min == max)
+    return '';
+
+  if(amount < mid - (mid - min) / 10 * 9)
+    return 'bg-' + minColor + '-darken-4';
+  if(amount < mid - (mid - min) / 10 * 8)
+    return 'bg-' + minColor + '-darken-3';
+  if(amount < mid - (mid - min) / 10 * 7)
+    return 'bg-' + minColor + '-darken-2';
+  if(amount < mid - (mid - min) / 10 * 6)
+    return 'bg-' + minColor + '-darken-1';
+  if(amount < mid - (mid - min) / 10 * 5)
+    return 'bg-' + minColor;
+  if(amount < mid - (mid - min) / 10 * 4)
+    return 'bg-' + minColor + '-lighten-1';
+  if(amount < mid - (mid - min) / 10 * 3)
+    return 'bg-' + minColor + '-lighten-2';
+  if(amount < mid - (mid - min) / 10 * 2)
+    return 'bg-' + minColor + '-lighten-3';
+  if(amount < mid - (mid - min) / 10 * 1)
+    return 'bg-' + minColor + '-lighten-4';
+  if(amount <= mid - 0.00001)
+    return 'bg-' + minColor + '-lighten-5';
+
+  if(amount < mid + 0.00001)
+    return '';
+
+  if(amount <= mid + (max - mid) / 10 * 1)
+    return 'bg-' + maxColor + '-lighten-5';
+  if(amount <= mid + (max - mid) / 10 * 2)
+    return 'bg-' + maxColor + '-lighten-4';
+  if(amount <= mid + (max - mid) / 10 * 3)
+    return 'bg-' + maxColor + '-lighten-3';
+  if(amount <= mid + (max - mid) / 10 * 4)
+    return 'bg-' + maxColor + '-lighten-2';
+  if(amount <= mid + (max - mid) / 10 * 5)
+    return 'bg-' + maxColor + '-lighten-1';
+  if(amount <= mid + (max - mid) / 10 * 6)
+    return 'bg-' + maxColor;
+  if(amount <= mid + (max - mid) / 10 * 7)
+    return 'bg-' + maxColor + '-darken-1';
+  if(amount <= mid + (max - mid) / 10 * 8)
+    return 'bg-' + maxColor + '-darken-2';
+  if(amount <= mid + (max - mid) / 10 * 9)
+    return 'bg-' + maxColor + '-darken-3';
+  // if(amount <= max )
+    return 'bg-' + maxColor + '-darken-4';
+
+}
+
+exports.gradientLite(amount, min, max, mid = 0, minColor = 'amber', maxColor = 'lime') {
+
+  if(amount === undefined || amount === null || min == max)
+    return '';
+
+  if(amount < mid - (mid - min) / 6 * 5)
+    return 'bg-' + minColor;
+  if(amount < mid - (mid - min) / 6 * 4)
+    return 'bg-' + minColor + '-lighten-1';
+  if(amount < mid - (mid - min) / 6 * 3)
+    return 'bg-' + minColor + '-lighten-2';
+  if(amount < mid - (mid - min) / 6 * 2)
+    return 'bg-' + minColor + '-lighten-3';
+  if(amount < mid - (mid - min) / 6 * 1)
+    return 'bg-' + minColor + '-lighten-4';
+  if(amount <= mid - 0.00001)
+    return 'bg-' + minColor + '-lighten-5';
+
+  if(amount < mid + 0.00001)
+    return '';
+
+  if(amount <= mid + (max - mid) / 6 * 1)
+    return 'bg-' + maxColor + '-lighten-5';
+  if(amount <= mid + (max - mid) / 6 * 2)
+    return 'bg-' + maxColor + '-lighten-4';
+  if(amount <= mid + (max - mid) / 6 * 3)
+    return 'bg-' + maxColor + '-lighten-3';
+  if(amount <= mid + (max - mid) / 6 * 4)
+    return 'bg-' + maxColor + '-lighten-2';
+  if(amount <= mid + (max - mid) / 6 * 5)
+    return 'bg-' + maxColor + '-lighten-1';
+  // if(amount <= max )
+    return 'bg-' + maxColor;
+
+}
+
+exports.gradientSingle(amount, min, max, color = 'yellow') {
+
+  if(amount === undefined || amount === null || min == max)
+    return '';
+
+  if(amount < min)
+    return '';
+  if(amount < min + (max - min) / 6 * 1)
+    return 'bg-' + color + '-lighten-5';
+  if(amount < min + (max - min) / 6 * 2)
+    return 'bg-' + color + '-lighten-4';
+  if(amount < min + (max - min) / 6 * 3)
+    return 'bg-' + color + '-lighten-3';
+  if(amount < min + (max - min) / 6 * 4)
+    return 'bg-' + color + '-lighten-2';
+  if(amount < min + (max - min) / 6 * 5)
+    return 'bg-' + color + '-lighten-1';
+  // if(amount < max )
+    return 'bg-' + color;
+
+}
