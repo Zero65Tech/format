@@ -23,7 +23,12 @@ exports.number = (number, d = 0) => {
 
 };
 
-exports.currency = (amount, d = 2) => {
+exports.percentage = (number, d = 0) => {
+  let f = exports.number(number, d);
+  return f === null ? f : f + '%';
+};
+
+exports.currency = (amount, d = 0) => {
   let f = exports.number(Math.abs(amount), d);
   if(f === null)
     return null;
