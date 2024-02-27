@@ -98,7 +98,7 @@ exports.json = (data, wrap = 0, ...nodes) => {
 
 }
 
-exports.gradient(amount, min = -100, max = 100, mid = 0, minColor = 'deep-orange', maxColor = 'light-green') {
+exports.gradient = (amount, min = -100, max = 100, mid = 0, minColor = 'deep-orange', maxColor = 'light-green') => {
 
   if(amount === undefined || amount === null || min == max)
     return '';
@@ -150,7 +150,7 @@ exports.gradient(amount, min = -100, max = 100, mid = 0, minColor = 'deep-orange
 
 }
 
-exports.gradientLite(amount, min = -100, max = 100, mid = 0, minColor = 'amber', maxColor = 'lime') {
+exports.gradientLite = (amount, min = -100, max = 100, mid = 0, minColor = 'amber', maxColor = 'lime') => {
 
   if(amount === undefined || amount === null || min == max)
     return '';
@@ -186,7 +186,7 @@ exports.gradientLite(amount, min = -100, max = 100, mid = 0, minColor = 'amber',
 
 }
 
-exports.gradientSingle(amount, min = 0, max = 100, color = 'yellow') {
+exports.gradientSingle = (amount, min = 0, max = 100, color = 'yellow') => {
 
   if(amount === undefined || amount === null || min == max)
     return '';
