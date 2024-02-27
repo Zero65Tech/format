@@ -1,6 +1,6 @@
 exports.number = (number, d = 0) => {
 
-  if(!number || Math.abs(number) < 0.0001)
+  if(number === undefined || number === null)
     return null;
 
   number = Math.round(number * Math.pow(10, d));
