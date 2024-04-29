@@ -29,10 +29,14 @@ exports.percentage = (number, d = 0) => {
 };
 
 exports.currency = (amount, d = 0) => {
-  let f = exports.number(Math.abs(amount), d);
-  if(f === null)
+
+  if(amount === undefined || amount === null)
     return null;
+
+  let f = exports.number(Math.abs(amount), d);
+  
   return amount < 0 ? ('- ₹' + f) : ('₹' + f);
+
 }
 
 exports.json = (data, wrap = 0, ...nodes) => {
