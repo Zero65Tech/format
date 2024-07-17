@@ -92,7 +92,7 @@ exports.json = (data, wrap = 0, ...nodes) => {
         strArr.push(`"${ key }": ${ exports.json(value, wrap, ...nodes, key).replace(/\n/g, '\n  ') }`);
       else if(typeof value == 'number' && Number.isNaN(value))
         strArr.push(`"${ key }": "NaN"`);
-      else
+      else if(value !== undefined)
         strArr.push(`"${ key }": ${ JSON.stringify(value) }`);
     }
 
