@@ -7,18 +7,19 @@ exports.number = (number, d = 0) => {
 
   let numberStr = Math.abs(number) + '';
   let l = numberStr.length;
-  for(; l < d; l++)
+  for( ; l < d + 1; l++)
     numberStr = '0' + numberStr;
 
-  if(l == d)
-    numberStr = '0.' + numberStr;
-  else if(l <= 3 + d)
-    numberStr = numberStr.substring(0, l - d) + (d ? '.' + numberStr.substring(l - d) : '');
-  else if(l <= 5 + d)
-    numberStr = numberStr.substring(0, l - 3 - d) + ',' + numberStr.substring(l - 3 - d, l - d) + (d ? '.' + numberStr.substring(l - d) : '')
-  else
-    numberStr = numberStr.substring(0, l - 5 - d) + ',' + numberStr.substring(l - 5 - d, l - 3 - d) + ',' + numberStr.substring(l - 3 - d, l - d) + (d ? '.' + numberStr.substring(l - d) : '');
-  
+  for(let idx of [7,5,3]) {
+    if(l-d > idx) {
+      numberStr = numberStr.substring(0,l-d-idx) + ',' + numberStr.substring(l-d-idx);
+      l++;
+    }
+  }
+
+  if(d)
+    numberStr = numberStr.substring(0,l-d) + '.' + numberStr.substring(l-d);
+
   return (number < 0 ? '- ' : '') + numberStr;
 
 };
